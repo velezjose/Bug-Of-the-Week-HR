@@ -79,6 +79,39 @@ For more resources, feel free to send me a Slack message and I can point you in 
 Have a good night everyone! 
 
 
+### Week 4
+
+Hi Juniors! @channel
+
+Hope everyone’s week is going great! It’s time for the **BOW**!
+
+This week we had two **BOWs**: 
+1. Understanding callbacks (due to the **callback hell** confusion)
+2. Understanding Node.js error-first callback pattern
+
+
+**I. What is a callback?** 
+According to Wikipedia (source: https://en.wikipedia.org/wiki/Callback_(computer_programming)), a callback is any executable code – e.g. a function – that is passed as an argument to other code that is expected to **call back** (execute) that argument at a given time. 
+
+It’s important to note that **a callback doesn’t have to do with asynchronous behavior**. It does, however, have the nice property to it that it gets executed by another piece of code, which means that they’re perfect for asynchronous behavior since they can be passed into functions that behave asynchronously. When the asynchronous behavior is completed, it can pass data to a callback. This way, we don’t have to worry about when the data will be received, as we will know that at some future point it will be taken care of.
+
+The problem with callbacks is – as you all experienced – that they can get messy and hard to follow once you have many layers of them. One can easily lose track of which callback was supposed to do what, and what data was passed in where, etc…
+
+For this reason, promises were added to JavaScript. I highly recommend reading more about them here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise. They’re very useful.
+
+Finally, for fun and when you have some free time, read up on what `Promise.all` does and think of a way that you could implement it. More info about it here (https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+
+**II. Error-first Callback Pattern**
+Now, about the **Node.js error-first callback pattern**, the most important thing you should note is that it’s only a style of callbacks. It’s a pattern, a very useful one though. There are several articles that are worth reading about it: 
+*  https://30secondsofinterviews.org/ (Cmd + ‘F’ + ‘error’)
+* http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/
+
+
+Hope this was helpful! Enjoy the rest of your day!
+
+
+
 ## Seniors
 
 ### Week 7
@@ -122,7 +155,7 @@ Here’s a great article on StackOverflow explaining this. In [this article](htt
 
 
 
-### Week 9 
+### Week 9
 
 Good evening everyone,
 
@@ -140,3 +173,41 @@ It seems like there weren’t that many help desk tickets (*woohoo autonomy!*) l
 
 Have a good night everyone!
 
+
+
+### Week 10
+
+Hello Seniors! @channel
+
+
+I believe you are all done with SDC! Congrats said the bats and the cats!
+
+Now, for your second favorite part of the week – TQPA is first, of course – the **BOW**! This week’s **BOW** is… **configuring EC2 instances to connect to the right IP and Port addresses of your other instances!** 
+
+I’m sure a lot of time this week was spent configuring EC2 instances to run [daemons](https://en.wikipedia.org/wiki/Daemon_(computing)), such as Redis, Postgres, Mongod – mongo daemon –, etc. But before this, before these background processes can run and function appropriately, you had to specify in the configuration files for the programs to send requests to another EC2s, and you also had to specify what ports they accept requests from.
+
+
+So let’s look into these steps a bit further and see what and why.
+
+1. Each EC2 instance that you set up has a unique public and private IP address. For now, we’ll focus on the **public IP address**. The public IP address is something like 127.0.0.1 (<– this is localhost) or 84.52.220.193. They also have public DNS hostnames such as ec2-203-0-113-25.compute-1.amazonaws.com.
+
+
+2. You can access this EC2 instance (and thus its services) by sending requests to that public IP address from anywhere that you have access to the internet and that’s not banned from the AWS network. So, pretty much everywhere in the world. 
+
+
+3. You should allow requests at certain ports to be made (example ports: 80 – default, 443 – for https, 27017 – MongoDB default port, etc.). ([More info here](https://en.wikipedia.org/wiki/Port_(computer_networking))).
+
+
+4. Once this is all set up, that is, (1) you have the IP addresses of your EC2 instances and what each of them is responsible for – caching, database, server, etc. –, (2) you open up those ports in the EC2 console to allow for requests and connections of certain types to be made to those ports, and (3) you explicitly specify these EC2 IP addresses and open port numbers, then you can run the programs such as MongoD, Redis, Postgres, Nginx, etc. and test whether the requests that are sent are running smoothly, and whether everything is working properly.
+
+
+So, this was more of a recap of how these components fit into a bigger picture, and how everything works out. 
+
+
+More info about AWS EC2 [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
+
+
+For further exploratory research into system design, here are some resources that I’ve used quite a lot for preparing for interviews. 
+  - YouTube channels that I highly recommend: https://www.youtube.com/watch?v=vvhC64hQZMk, https://www.youtube.com/watch?v=U0xTu6E2CT8, https://www.youtube.com/watch?v=fMZMm_0ZhK4&t=4s
+  - Reading: https://github.com/donnemartin/system-design-primer
+  - Pramp.com System Design Interviews
